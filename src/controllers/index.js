@@ -1,31 +1,33 @@
-import { list } from "./dependencies.js";
+import { list, doublyList,  circularLinkedList } from "./dependencies.js";
 
 // Prueba de push
-list.push(1);
-list.push(2);
-list.push(3);
-list.push("Hola");
+doublyList.push(1);
+doublyList.push(2);
+doublyList.push(3);
+doublyList.push("Hola");
 
 // Prueba de insert
-list.insert("Inser exitoso", 0);
+doublyList.insert("Inser exitoso", 0);
 
 // Prueba de remove
-list.remove();
+doublyList.remove();
 
 // Prueba de getElementAt y toString
-for (let i = 0; i < list.size(); i++) {
-    const nodeData = list.getElementAt(i).getData();
+for (let i = 0; i < doublyList.size(); i++) {
+    const nodeData = doublyList.getElementAt(i).getData();
     console.log(nodeData);
 }
 
 // Prueba de indexOf
-console.log("Index of 2:", list.indexOf(2));
+console.log("Index of 2:", doublyList.indexOf(2));
 
 // Prueba de size
-console.log("Size:", list.size());
+console.log("Size:", doublyList.size());
 
 // Prueba de isEmpty
-console.log("Is empty:", list.isEmpty());
+console.log("Is empty:", doublyList.isEmpty());
 
-// Prueba de getHead
-console.log("Head:", list.getHead());
+// Prueba de getHead y getTail
+console.log("Head:", doublyList.getHead());
+console.log("Tail:", doublyList.getTail());
+
