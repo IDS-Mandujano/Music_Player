@@ -1,8 +1,10 @@
 import { circularLinkedList } from "./dependencies.js";
 
-circularLinkedList.add('Baby Queen', 'src/Audio/Baby Queen.mp3');
-circularLinkedList.add('Judas', 'src/Audio/Judas.mp3');
-circularLinkedList.add('On Melancholy Hill', 'src/Audio/On Melancholy Hill.mp3');
+
+circularLinkedList.push('On Melancholy Hill', 'src/Audio/On Melancholy Hill.mp3')
+circularLinkedList.push('Baby Queen', 'src/Audio/Baby Queen.mp3')
+circularLinkedList.push('Empire Ants','src/Audio/Empire Ants.mp3')
+circularLinkedList.push('Whay You Know','src/Audio/What You Know.mp3')
 
 const pause = document.getElementById("playPause")
 pause.addEventListener("click",()=>{

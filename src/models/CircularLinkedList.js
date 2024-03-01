@@ -7,7 +7,7 @@ export class CircularLinkedList {
       this.isPlaying = false;
     }
 
-    add(data, source) {
+    push(data, source) {
         const newNode = new Node(data, source);
         if (!this.head) {
           this.head = newNode;
@@ -33,7 +33,6 @@ export class CircularLinkedList {
           audioPlayer.play();
           this.isPlaying = true;
     
-          // Actualizar la barra de progreso
           audioPlayer.addEventListener('timeupdate', function () {
             const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
             progressBar.style.width = percent + '%';
