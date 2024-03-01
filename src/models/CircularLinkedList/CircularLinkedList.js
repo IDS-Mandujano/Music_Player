@@ -1,70 +1,78 @@
-import { LinkedList } from "../LinkedList/LinkedList.js"
-import { defaultEquals } from "../LinkedList/util.js";
+import { Node } from "./Node.js";
 
-export class CircularLinkedList extends LinkedList{
-
-    #head
-    #count
-
-    constructor(equalsFn = defaultEquals){
-        super(equalsFn)
+export class CircularLinkedList {
+    constructor() {
+      this.head = null;
+      this.current = null;
+      this.isPlaying = false;
     }
 
-    insert(element, index) {
-        if (index >= 0 && index <= this.#count) {
-            const node = new Node(element);
-            let current = this.#head;
-    
-            if (index === 0) {
-                if (this.#head == null) {
-                    this.#head = node;
-                    node.next = this.#head;
-                } else {
-                    node.next = current;
-                    current = this.getElementAt(this.size());
-                    this.#head = node;
-                    current.next = this.#head;
-                }
-            } else { 
-                const previous = this.getElementAt(index - 1);
-                node.next = previous.next;
-                previous.next = node;
-            }
-    
-            this.#count++;
-            return true;
+    add(data, source) {
+        const newNode = new Node(data, source);
+        if (!this.head) {
+          this.head = newNode;
+          this.head.next = this.head;
+          this.current = this.head;
+        } else {
+          newNode.next = this.head;
+          let current = this.head;
+          while (current.next !== this.head) {
+            current = current.next;
+          }
+          current.next = newNode;
         }
-    
-        return false;
-    }
-    
+      }
 
-    removeAt(index) {
-        if (index >= 0 && index < this.#count) {
-            let current = this.#head;
+    play() {
+        const audioPlayer = document.getElementById('audioPlayer');
+        const progressBar = document.getElementById('progressBar');
+        
+        if (this.current && this.current.source) {
+          console.log('Reproduciendo:', this.current.data);
+          audioPlayer.src = this.current.source;
+          audioPlayer.play();
+          this.isPlaying = true;
     
-            if (index === 0) {
-                if (this.size() === 1) {
-                    this.#head = undefined;
-                } else {
-                    const removed = this.#head;
-                    current = this.getElementAt(this.size());
-                    this.#head = this.#head.next;
-                    current.next = this.#head;
-                    current = removed;
-                }
-            } else {
-                const previous = this.getElementAt(index - 1);
-                current = previous.next;
-                previous.next = current.next;
-            }
-    
-            this.#count--;
-            return current.element;
+          // Actualizar la barra de progreso
+          audioPlayer.addEventListener('timeupdate', function () {
+            const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressBar.style.width = percent + '%';
+            progressBar.setAttribute('aria-valuenow', percent);
+          });
+        } else {
+          console.log('La lista está vacía o la fuente es indefinida');
         }
+      }
     
-        return undefined;
-    }
+      pause() {
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.pause();
+        this.isPlaying = false;
+        console.log('Pausado:', this.current.data);
+      }
     
-
+      resume() {
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.play();
+        this.isPlaying = true;
+        console.log('Reanudando:', this.current.data);
+      }
+    
+      next() {
+        if (this.current) {
+          this.current = this.current.next;
+          this.play();
+        }
+      }
+    
+      previous() {
+        if (this.current) {
+          let temp = this.head;
+          while (temp.next !== this.current) {
+            temp = temp.next;
+          }
+          this.current = temp;
+          this.play();
+        }
+      }
 }

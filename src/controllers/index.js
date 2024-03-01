@@ -1,33 +1,21 @@
-import { list, doublyList,  circularLinkedList } from "./dependencies.js";
+import { circularLinkedList } from "./dependencies"
 
-// Prueba de push
-doublyList.push(1);
-doublyList.push(2);
-doublyList.push(3);
-doublyList.push("Hola");
+circularLinkedList.add('Baby Queen', 'src/Audio/Baby Queen.mp3');
+circularLinkedList.add('Judas', 'src/Audio/Judas.mp3');
+circularLinkedList.add('On Melancholy Hill', 'src/Audio/On Melancholy Hill.mp3');
 
-// Prueba de insert
-doublyList.insert("Inser exitoso", 0);
-
-// Prueba de remove
-doublyList.remove();
-
-// Prueba de getElementAt y toString
-for (let i = 0; i < doublyList.size(); i++) {
-    const nodeData = doublyList.getElementAt(i).getData();
-    console.log(nodeData);
+function playPause() {
+  if (playlist.isPlaying) {
+    playlist.pause();
+  } else {
+    playlist.resume();
+  }
 }
 
-// Prueba de indexOf
-console.log("Index of 2:", doublyList.indexOf(2));
+function next() {
+  playlist.next();
+}
 
-// Prueba de size
-console.log("Size:", doublyList.size());
-
-// Prueba de isEmpty
-console.log("Is empty:", doublyList.isEmpty());
-
-// Prueba de getHead y getTail
-console.log("Head:", doublyList.getHead());
-console.log("Tail:", doublyList.getTail());
-
+function previous() {
+  playlist.previous();
+}
