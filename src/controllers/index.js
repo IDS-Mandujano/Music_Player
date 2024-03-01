@@ -1,5 +1,4 @@
-import { circularLinkedList } from "./dependencies.js";
-
+import { circularLinkedList } from "./dependencies.js"
 
 circularLinkedList.push('On Melancholy Hill', 'src/Audio/On Melancholy Hill.mp3')
 circularLinkedList.push('Baby Queen', 'src/Audio/Baby Queen.mp3')
@@ -23,16 +22,16 @@ anterior.addEventListener("click",()=>{
 
 function playPause() {
     if (circularLinkedList.isPlaying) {
-      circularLinkedList.pause();
+      circularLinkedList.pause()
     } else {
-      circularLinkedList.resume();
+      circularLinkedList.resume()
     }
   }
 
 function next() {
-  circularLinkedList.next();
+  circularLinkedList.next()
 }
 
 function previous() {
-  circularLinkedList.previous();
+  circularLinkedList.previous()
 }
