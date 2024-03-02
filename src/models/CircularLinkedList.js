@@ -23,7 +23,6 @@ export class CircularLinkedList {
       }
       current.next = newNode
     }
-    this.getData(data)
   }
 
   play() {
@@ -61,10 +60,6 @@ export class CircularLinkedList {
       this.current = temp
       this.play()
     }
-  }
-
-  getData(data){
-    return data
   }
 
 }
